@@ -2,79 +2,60 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width,initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>HeadLock C28H</title>
 
 <style>
-
 *{
     box-sizing:border-box;
-}
-
-body{
     margin:0;
-    min-height:100vh;
-    background:
-        radial-gradient(
-            circle at top,
-            #151515,
-            #050505 55%
-        );
-    color:#fff;
+    padding:0;
     font-family:Arial,sans-serif;
 }
 
+body{
+    background:#000;
+    color:#fff;
+    min-height:100vh;
+}
+
 .container{
-    width:92%;
-    max-width:480px;
+    width:100%;
+    max-width:500px;
     margin:auto;
-    padding:20px 0 40px;
+    padding:20px 15px 40px;
 }
 
-.screen{
-    display:none;
+/* ================= KEY ================= */
+
+#keyPage{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.screen.active{
-    display:block;
+.key-card{
+    width:100%;
+    border:1px solid #444;
+    border-radius:18px;
+    padding:25px;
+    background:#080808;
+    box-shadow:0 0 25px rgba(255,255,255,.08);
 }
-
-
-/* LOGO */
 
 .logo{
     text-align:center;
-    margin:20px 0 25px;
-}
-
-.logo h1{
     font-size:30px;
-    margin:0;
-    letter-spacing:2px;
+    font-weight:bold;
+    margin-bottom:5px;
 }
 
-.logo p{
-    margin:7px 0 0;
-    color:#888;
-    font-size:12px;
-    letter-spacing:4px;
+.sub-logo{
+    text-align:center;
+    color:#999;
+    margin-bottom:25px;
 }
-
-
-/* CARD */
-
-.card{
-    background:#0b0b0b;
-    border:1px solid #292929;
-    border-radius:17px;
-    padding:18px;
-    margin-bottom:15px;
-}
-
-
-/* KEY */
 
 .key-tabs{
     display:flex;
@@ -84,12 +65,11 @@ body{
 
 .key-tab{
     flex:1;
-    padding:13px;
+    padding:12px;
+    border:1px solid #444;
     border-radius:10px;
-    border:1px solid #333;
     background:#111;
     color:#aaa;
-    font-weight:bold;
     cursor:pointer;
 }
 
@@ -98,25 +78,21 @@ body{
     color:#000;
 }
 
-.input{
+input{
     width:100%;
     padding:14px;
     border-radius:10px;
-    border:1px solid #333;
-    background:#050505;
+    border:1px solid #444;
+    background:#111;
     color:#fff;
     outline:none;
     margin-bottom:12px;
 }
 
-.input:focus{
-    border-color:#777;
-}
-
-.btn{
+button{
     width:100%;
     padding:14px;
-    border:0;
+    border:none;
     border-radius:10px;
     background:#fff;
     color:#000;
@@ -124,1674 +100,848 @@ body{
     cursor:pointer;
 }
 
-.message{
+#error{
     text-align:center;
+    color:#ff4d4d;
     margin-top:12px;
-    min-height:18px;
-    font-size:13px;
+    min-height:20px;
 }
 
+/* ================= MAIN ================= */
 
-/* ACCOUNT */
+#mainPage{
+    display:none;
+}
 
-.account{
-    padding:13px;
-    border:1px solid #292929;
+.header{
+    text-align:center;
+    padding:20px 0;
+}
+
+.header h1{
+    font-size:30px;
+}
+
+.header p{
+    color:#888;
+    margin-top:5px;
+}
+
+.key-info{
+    border:1px solid #333;
     border-radius:12px;
-    background:#0b0b0b;
+    padding:14px;
+    margin-bottom:20px;
+    background:#080808;
+}
+
+.key-info div{
+    margin:5px 0;
+}
+
+.key-type{
+    font-weight:bold;
+}
+
+.normal-text{
+    color:#fff;
+}
+
+.premium-text{
+    color:#fff;
+}
+
+/* ================= GAME ================= */
+
+#gamePage{
+    display:none;
+}
+
+.game-title{
     text-align:center;
     margin-bottom:15px;
 }
 
-.account b{
-    color:#fff;
+.game-title h2{
+    font-size:23px;
 }
 
-.timer{
-    color:#777;
-    font-size:12px;
+.game-title p{
+    color:#888;
     margin-top:5px;
 }
 
-
-/* GAME */
-
-.game-title{
-    color:#888;
-    font-size:12px;
-    font-weight:bold;
-    margin-bottom:10px;
-    letter-spacing:1px;
-}
-
-.game-select{
-    display:grid;
-    grid-template-columns:1fr 1fr;
+.game-buttons{
+    display:flex;
     gap:10px;
+    margin-bottom:20px;
 }
 
 .game-btn{
-    padding:18px 8px;
+    flex:1;
+    padding:16px 8px;
+    border:1px solid #444;
     border-radius:12px;
-    border:1px solid #292929;
-    background:#101010;
-    color:white;
+    background:#0b0b0b;
+    color:#fff;
     cursor:pointer;
-    font-weight:bold;
 }
 
-.game-btn.active{
+.game-btn:hover{
     background:#fff;
     color:#000;
 }
 
-.game-btn small{
-    display:block;
-    margin-top:6px;
-    color:#777;
-}
-
-
-/* GAME CONTENT */
-
-.game-content{
+#functionPage{
     display:none;
 }
 
-.game-content.active{
-    display:block;
-}
-
-
-/* FUNCTION */
+/* ================= FUNCTION ================= */
 
 .section-title{
-    margin:18px 0 10px;
-    font-size:13px;
+    font-size:18px;
     font-weight:bold;
-    color:#aaa;
-    letter-spacing:1px;
+    margin:20px 0 10px;
 }
-
-.function-list{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-
-/*
-    MỖI CHỨC NĂNG 1 VIỀN RIÊNG
-*/
 
 .function-box{
     position:relative;
-    min-height:68px;
-    padding:24px 15px 12px;
-
-    border:1px solid #303030;
+    border:1px solid #333;
     border-radius:12px;
+    padding:17px;
+    margin-bottom:10px;
+    background:#080808;
+}
 
-    background:
-        linear-gradient(
-            145deg,
-            #101010,
-            #080808
-        );
+.function-box .brand{
+    position:absolute;
+    top:7px;
+    right:10px;
+    font-size:8px;
+    color:#555;
+}
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+.function-name{
+    font-size:15px;
+    padding-right:35px;
+}
 
+.switch{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    width:42px;
+    height:22px;
+    background:#333;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.switch::after{
+    content:"";
+    position:absolute;
+    width:18px;
+    height:18px;
+    top:2px;
+    left:2px;
+    background:#aaa;
+    border-radius:50%;
     transition:.2s;
 }
 
-.function-box:hover{
-    border-color:#666;
-}
-
-
-/* C28H GÓC TRÊN PHẢI */
-
-.c28h-mini{
-    position:absolute;
-    top:6px;
-    right:10px;
-
-    font-size:8px;
-    font-weight:bold;
-    letter-spacing:1px;
-
-    color:#777;
-}
-
-
-/* NAME */
-
-.function-name{
-    font-size:14px;
-    font-weight:bold;
-}
-
-
-/* SWITCH */
-
-.switch{
-    position:relative;
-    width:48px;
-    height:25px;
-}
-
-.switch input{
-    display:none;
-}
-
-.slider{
-    position:absolute;
-    inset:0;
-
-    background:#252525;
-    border:1px solid #444;
-
-    border-radius:30px;
-    cursor:pointer;
-
-    transition:.25s;
-}
-
-.slider:before{
-    content:"";
-
-    position:absolute;
-
-    width:19px;
-    height:19px;
-
-    left:2px;
-    top:2px;
-
-    border-radius:50%;
-
-    background:#888;
-
-    transition:.25s;
-}
-
-
-/* OFF = TRÁI */
-
-.switch input:not(:checked)
-+ .slider:before{
-    transform:translateX(0);
-}
-
-
-/* ON = PHẢI */
-
-.switch input:checked
-+ .slider{
+.switch.on{
     background:#fff;
 }
 
-.switch input:checked
-+ .slider:before{
-    transform:translateX(23px);
+.switch.on::after{
+    left:22px;
     background:#000;
 }
 
-
-/* DPI */
+/* ================= DPI ================= */
 
 .dpi-box{
-    position:relative;
-
-    margin-top:12px;
-    padding:24px 14px 14px;
-
-    border:1px solid #303030;
+    border:1px solid #333;
     border-radius:12px;
+    padding:17px;
+    margin-top:10px;
+    background:#080808;
+}
 
-    background:#0b0b0b;
+.dpi-box .brand{
+    float:right;
+    font-size:8px;
+    color:#555;
 }
 
 .dpi-input{
-    width:100%;
-    padding:12px;
-
-    border-radius:9px;
-    border:1px solid #333;
-
-    background:#050505;
-    color:#fff;
-
-    outline:none;
+    margin-top:12px;
+    margin-bottom:0;
 }
 
+/* ================= SENS ================= */
 
-/* DEVICE */
-
-.device-box{
-    margin-top:15px;
+.sensitivity{
+    margin-top:20px;
+    border:1px solid #333;
+    border-radius:12px;
+    padding:17px;
+    background:#080808;
 }
 
 .device-input{
-    width:100%;
-    padding:13px;
-
-    border-radius:10px;
-    border:1px solid #333;
-
-    background:#050505;
-    color:#fff;
-
-    outline:none;
+    margin-top:12px;
 }
 
-
-/* SENSITIVITY */
-
-.sensitivity-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    margin-top:10px;
+.sens-result{
+    display:none;
+    margin-top:15px;
 }
 
-.sens-item{
-    position:relative;
-
-    padding:25px 10px 10px;
-
-    border:1px solid #303030;
-    border-radius:11px;
-
-    background:#0b0b0b;
+.sens-row{
+    border:1px solid #292929;
+    border-radius:8px;
+    padding:11px;
+    margin-top:7px;
+    display:flex;
+    justify-content:space-between;
 }
 
-.sens-item.full{
-    grid-column:1/-1;
+.sens-value{
+    font-weight:bold;
 }
 
-.sens-item label{
-    display:block;
-    font-size:10px;
-    color:#777;
-    margin-bottom:7px;
-}
+/* ================= TÂM ẢO ================= */
 
-.sens-item input{
-    width:100%;
-    padding:9px;
-
-    border-radius:7px;
-    border:1px solid #333;
-
-    background:#050505;
-    color:#fff;
-}
-
-
-/* CROSSHAIR
-   CHỈ LÀ UI TRÊN TRANG
-*/
-
-.crosshair{
+#crosshair{
+    display:none;
     position:fixed;
-
     left:50%;
     top:50%;
-
-    transform:
-        translate(-50%,-50%);
-
-    font-size:34px;
-
-    color:white;
-
-    display:none;
-
-    z-index:9999;
-
+    transform:translate(-50%,-50%);
+    width:30px;
+    height:30px;
     pointer-events:none;
+    z-index:9999;
 }
 
-.crosshair.show{
-    display:block;
+#crosshair::before,
+#crosshair::after{
+    content:"";
+    position:absolute;
+    background:#fff;
 }
 
-
-/* FOOTER */
-
-.footer{
-    text-align:center;
-    color:#555;
-    font-size:10px;
-    margin-top:25px;
+#crosshair::before{
+    width:30px;
+    height:2px;
+    top:14px;
+    left:0;
 }
 
+#crosshair::after{
+    width:2px;
+    height:30px;
+    left:14px;
+    top:0;
+}
+
+.back{
+    margin-top:20px;
+    background:#111;
+    color:#fff;
+    border:1px solid #333;
+}
 </style>
 </head>
-
 
 <body>
 
 <div class="container">
 
+<!-- ================= KEY PAGE ================= -->
 
-<!-- =========================
-     LOGIN
-========================= -->
+<div id="keyPage">
 
-<div
-id="loginScreen"
-class="screen active">
+<div class="key-card">
 
-    <div class="logo">
+<div class="logo">C28H</div>
+<div class="sub-logo">HeadLock C28H</div>
 
-        <h1>HeadLock C28H</h1>
+<div class="key-tabs">
+<button class="key-tab active" onclick="selectKeyType('normal',this)">
+Key Normal
+</button>
 
-        <p>C28H AIM</p>
+<button class="key-tab" onclick="selectKeyType('premium',this)">
+Key Premium
+</button>
+</div>
 
-    </div>
+<input
+id="keyInput"
+placeholder="Nhập key của bạn..."
+autocomplete="off"
+>
 
+<button onclick="checkKey()">XÁC NHẬN KEY</button>
 
-    <div class="card">
+<div id="error"></div>
 
-        <div class="key-tabs">
-
-            <button
-            id="normalTab"
-            class="key-tab active"
-            onclick="chooseType('normal')">
-
-                KEY NORMAL
-
-            </button>
-
-
-            <button
-            id="premiumTab"
-            class="key-tab"
-            onclick="chooseType('premium')">
-
-                KEY PREMIUM
-
-            </button>
-
-        </div>
+</div>
+</div>
 
 
-        <input
-        id="keyInput"
-        class="input"
-        type="text"
-        placeholder="Nhập Key...">
+<!-- ================= MAIN PAGE ================= -->
 
+<div id="mainPage">
 
-        <button
-        class="btn"
-        onclick="checkKey()">
+<div class="header">
+<h1>HeadLock C28H</h1>
+<p>C28H Aim</p>
+</div>
 
-            XÁC NHẬN KEY
+<div class="key-info">
 
-        </button>
+<div>
+Loại Key:
+<span id="keyType" class="key-type"></span>
+</div>
 
+<div>
+Thời hạn:
+<span id="keyDuration"></span>
+</div>
 
-        <div
-        id="keyMessage"
-        class="message">
-        </div>
-
-    </div>
-
-
-    <div class="footer">
-        C28H AIM SYSTEM
-    </div>
+<div>
+Hết hạn vào:
+<span id="expireTime"></span>
+</div>
 
 </div>
 
 
-
-<!-- =========================
-     APP
-========================= -->
-
-<div
-id="appScreen"
-class="screen">
-
-
-    <div class="logo">
-
-        <h1>HeadLock C28H</h1>
-
-        <p>C28H AIM</p>
-
-    </div>
-
-
-    <div class="account">
-
-        Loại Key:
-        <b id="accountType">
-            NORMAL
-        </b>
-
-        <div class="timer">
-
-            Thời gian còn lại:
-            <span id="timer">
-                --:--:--
-            </span>
-
-        </div>
-
-        <div class="timer">
-
-            Hết hạn vào:
-            <span id="expireText">
-                --
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <!-- CHỌN GAME -->
-
-    <div class="card">
-
-        <div class="game-title">
-            CHỌN PHIÊN BẢN GAME
-        </div>
-
-
-        <div class="game-select">
-
-            <button
-            id="normalGameBtn"
-            class="game-btn"
-            onclick="toggleGame('normalGame')">
-
-                🎮
-                <br>
-
-                Free Fire Thường
-
-                <small>C28H</small>
-
-            </button>
-
-
-            <button
-            id="maxGameBtn"
-            class="game-btn"
-            onclick="toggleGame('maxGame')">
-
-                🎮
-                <br>
-
-                Free Fire MAX
-
-                <small>C28H</small>
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =========================
-         FREE FIRE THƯỜNG
-    ========================= -->
-
-    <div
-    id="normalGame"
-    class="game-content">
-
-        <div class="section-title">
-            CHỨC NĂNG
-        </div>
-
-
-        <div class="function-list">
-
-
-            <div class="function-box">
-
-                <span class="c28h-mini">
-                    C28H
-                </span>
-
-                <span class="function-name">
-                    Tâm Ảo
-                </span>
-
-                <label class="switch">
-
-                    <input
-                    type="checkbox"
-                    onchange="toggleCrosshair(this)">
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
-
-            <div class="function-box">
-
-                <span class="c28h-mini">
-                    C28H
-                </span>
-
-                <span class="function-name">
-                    Aimlock V1
-                </span>
-
-                <label class="switch">
-
-                    <input type="checkbox">
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
-
-            <div class="function-box">
-
-                <span class="c28h-mini">
-                    C28H
-                </span>
-
-                <span class="function-name">
-                    HeadLock
-                </span>
-
-                <label class="switch">
-
-                    <input type="checkbox">
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
-
-            <div class="function-box">
-
-                <span class="c28h-mini">
-                    C28H
-                </span>
-
-                <span class="function-name">
-                    Nhẹ Tâm
-                </span>
-
-                <label class="switch">
-
-                    <input type="checkbox">
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
-
-            <div class="function-box">
-
-                <span class="c28h-mini">
-                    C28H
-                </span>
-
-                <span class="function-name">
-                    Fix Rung
-                </span>
-
-                <label class="switch">
-
-                    <input type="checkbox">
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
-
-            <div class="function-box">
-
-                <span class="c28h-mini">
-                    C28H
-                </span>
-
-                <span class="function-name">
-                    Fix Lố
-                </span>
-
-                <label class="switch">
-
-                    <input type="checkbox">
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
-
-            <div class="function-box">
-
-                <span class="c28h-mini">
-                    C28H
-                </span>
-
-                <span class="function-name">
-                    Bám đầu
-                </span>
-
-                <label class="switch">
-
-                    <input type="checkbox">
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
-
-            <div class="function-box">
-
-                <span class="c28h-mini">
-                    C28H
-                </span>
-
-                <span class="function-name">
-                    Nhạy Màn
-                </span>
-
-                <label class="switch">
-
-                    <input type="checkbox">
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
-        </div>
-
-
-        <!-- DPI -->
-
-        <div class="dpi-box">
-
-            <span class="c28h-mini">
-                C28H
-            </span>
-
-            <div class="section-title">
-                DPI
-            </div>
-
-            <input
-            id="dpiNormal"
-            class="dpi-input"
-            type="number"
-            min="1"
-            max="120"
-            placeholder="DPI 1 - 120">
-
-        </div>
-
-
-        <SensitivityBlock
-        prefix="normal">
-        </SensitivityBlock>
-
-    </div>
-
-
-
-    <!-- =========================
-         FREE FIRE MAX
-    ========================= -->
-
-    <div
-    id="maxGame"
-    class="game-content">
-
-        <div class="section-title">
-            CHỨC NĂNG
-        </div>
-
-
-        <div class="function-list">
-
-
-            <div class="function-box">
-
-                <span class="c28h-mini">
-                    C28H
-                </span>
-
-                <span class="function-name">
-                    Tâm Ảo
-                </span>
-
-                <label class="switch">
-
-                    <input
-                    type="checkbox"
-                    onchange="toggleCrosshair(this)">
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
-
-            <div class="function-box">
-
-                <span class="c28h-mini">
-                    C28H
-                </span>
-
-                <span class="function-name">
-                    Aimlock VIP
-                </span>
-
-                <label class="switch">
-
-                    <input type="checkbox">
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
-
-            <div class="function-box">
-
-                <span class="c28h-mini">
-                    C28H
-                </span>
-
-                <span class="function-name">
-                    HeadLock
-                </span>
-
-                <label class="switch">
-
-                    <input type="checkbox">
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
-
-            <div class="function-box">
-
-                <span class="c28h-mini">
-                    C28H
-                </span>
-
-                <span class="function-name">
-                    Nhẹ Tâm
-                </span>
-
-                <label class="switch">
-
-                    <input type="checkbox">
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
-
-            <div class="function-box">
-
-                <span class="c28h-mini">
-                    C28H
-                </span>
-
-                <span class="function-name">
-                    Bám đầu
-                </span>
-
-                <label class="switch">
-
-                    <input type="checkbox">
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
-
-            <div class="function-box">
-
-                <span class="c28h-mini">
-                    C28H
-                </span>
-
-                <span class="function-name">
-                    Fix Rung
-                </span>
-
-                <label class="switch">
-
-                    <input type="checkbox">
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
-
-            <div class="function-box">
-
-                <span class="c28h-mini">
-                    C28H
-                </span>
-
-                <span class="function-name">
-                    Fix Lố
-                </span>
-
-                <label class="switch">
-
-                    <input type="checkbox">
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
-
-            <div class="function-box">
-
-                <span class="c28h-mini">
-                    C28H
-                </span>
-
-                <span class="function-name">
-                    Nhạy Màn
-                </span>
-
-                <label class="switch">
-
-                    <input type="checkbox">
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
-
-            <div class="function-box">
-
-                <span class="c28h-mini">
-                    C28H
-                </span>
-
-                <span class="function-name">
-                    Buff FPS
-                </span>
-
-                <label class="switch">
-
-                    <input type="checkbox">
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
-        </div>
-
-
-        <!-- DPI -->
-
-        <div class="dpi-box">
-
-            <span class="c28h-mini">
-                C28H
-            </span>
-
-            <div class="section-title">
-                DPI
-            </div>
-
-            <input
-            id="dpiMax"
-            class="dpi-input"
-            type="number"
-            min="1"
-            max="120"
-            placeholder="DPI 1 - 120">
-
-        </div>
-
-
-        <SensitivityBlock
-        prefix="max">
-        </SensitivityBlock>
-
-    </div>
-
-
-    <div class="footer">
-        HEADLOCK C28H • C28H AIM
-    </div>
+<!-- ================= GAME SELECT ================= -->
+
+<div id="gamePage">
+
+<div class="game-title">
+<h2>CHỌN GAME</h2>
+<p>Chọn phiên bản Free Fire</p>
+</div>
+
+<div class="game-buttons">
+
+<button
+class="game-btn"
+onclick="openGame('Free Fire Thường')">
+FREE FIRE<br>THƯỜNG
+</button>
+
+<button
+class="game-btn"
+onclick="openGame('Free Fire MAX')">
+FREE FIRE<br>MAX
+</button>
 
 </div>
 
 </div>
 
 
-<!-- TÂM ẢO - CHỈ HIỂN THỊ TRÊN WEB -->
+<!-- ================= FUNCTIONS ================= -->
 
-<div
-id="crosshair"
-class="crosshair">
-    ＋
+<div id="functionPage">
+
+<div class="game-title">
+<h2 id="selectedGame"></h2>
+<p id="functionType"></p>
 </div>
 
+<div class="section-title">
+CHỨC NĂNG
+</div>
+
+<div id="functions"></div>
+
+<!-- DPI RIÊNG -->
+
+<div class="dpi-box">
+
+<span class="brand">C28H</span>
+
+<div class="function-name">
+DPI
+</div>
+
+<input
+class="dpi-input"
+id="dpi"
+type="number"
+min="1"
+max="120"
+placeholder="Nhập DPI 1 - 120"
+>
+
+</div>
+
+
+<!-- SENSITIVITY -->
+
+<div class="sensitivity">
+
+<div class="section-title" style="margin-top:0">
+ĐỘ NHẠY
+</div>
+
+<input
+class="device-input"
+id="device"
+placeholder="Nhập tên thiết bị..."
+>
+
+<button onclick="getSensitivity()">
+LẤY ĐỘ NHẠY
+</button>
+
+<div class="sens-result" id="sensResult">
+
+<div class="sens-row">
+<span>Nhìn xung quanh</span>
+<span class="sens-value" id="s1"></span>
+</div>
+
+<div class="sens-row">
+<span>Ống ngắm hồng tâm</span>
+<span class="sens-value" id="s2"></span>
+</div>
+
+<div class="sens-row">
+<span>Ống ngắm 2X</span>
+<span class="sens-value" id="s3"></span>
+</div>
+
+<div class="sens-row">
+<span>Ống ngắm 4X</span>
+<span class="sens-value" id="s4"></span>
+</div>
+
+<div class="sens-row">
+<span>Ống ngắm súng ngắm</span>
+<span class="sens-value" id="s5"></span>
+</div>
+
+<div class="sens-row">
+<span>Nút camera tự do</span>
+<span class="sens-value" id="s6"></span>
+</div>
+
+<div class="sens-row">
+<span>Nút bắn chuẩn</span>
+<span class="sens-value" id="fire"></span>
+</div>
+
+</div>
+
+</div>
+
+
+<button class="back" onclick="backToGame()">
+← QUAY LẠI CHỌN GAME
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- TÂM ẢO - CHỈ HIỂN THỊ KHI PREMIUM -->
+
+<div id="crosshair"></div>
 
 
 <script>
 
-/* =========================
-   KEY TYPE
-========================= */
+/* ================= DATA ================= */
 
-let selectedType = "normal";
+let selectedKeyType = "normal";
+let currentKey = "";
+let expireAt = null;
+let timer;
 
-let expireTime = null;
 
+/* ================= KEY TYPE ================= */
 
-function chooseType(type){
+function selectKeyType(type,button){
 
-    selectedType = type;
-
-    document
-    .getElementById("normalTab")
-    .classList
-    .toggle(
-        "active",
-        type === "normal"
-    );
+    selectedKeyType = type;
 
     document
-    .getElementById("premiumTab")
-    .classList
-    .toggle(
-        "active",
-        type === "premium"
-    );
+    .querySelectorAll(".key-tab")
+    .forEach(x => x.classList.remove("active"));
+
+    button.classList.add("active");
+
 }
 
 
-/* =========================
-   CHECK KEY
-========================= */
+/* ================= KEY CHECK ================= */
 
 function checkKey(){
 
     const key =
-        document
-        .getElementById("keyInput")
-        .value
-        .trim();
-
-
-    const message =
-        document
-        .getElementById("keyMessage");
-
-
-    /*
-       FORMAT PHẢI KHỚP GETKEY.HTML
-
-       NORMAL:
-       c28hios-gio-XXXXX
-       c28hios-ngay-XXXXX
-       c28hios-tuan-XXXXX
-       c28hios-thang-XXXXX
-       c28hios-vv-XXXXX
-
-       PREMIUM:
-       c28hpre-gio-XXXXX
-       ...
-    */
+    document
+    .getElementById("keyInput")
+    .value
+    .trim();
 
     const normalRegex =
-        /^c28hios-(gio|ngay|tuan|thang|vv)-[A-Za-z0-9]{5}$/;
-
+    /^c28hios-(gio|ngay|tuan|thang|vv)-[A-Za-z0-9]{5}$/;
 
     const premiumRegex =
-        /^c28hpre-(gio|ngay|tuan|thang|vv)-[A-Za-z0-9]{5}$/;
+    /^c28hpre-(gio|ngay|tuan|thang|vv)-[A-Za-z0-9]{5}$/;
 
 
-    let valid = false;
+    let type = null;
 
+    if(normalRegex.test(key)){
+        type = "normal";
+    }
 
-    if(selectedType === "normal"){
-
-        valid =
-            normalRegex.test(key);
-
-    }else{
-
-        valid =
-            premiumRegex.test(key);
-
+    if(premiumRegex.test(key)){
+        type = "premium";
     }
 
 
-    if(!valid){
+    if(!type){
 
-        message.style.color =
-            "#ff4d4d";
-
-        message.innerText =
-            "Key không hợp lệ!";
+        document
+        .getElementById("error")
+        .textContent = "Key không hợp lệ!";
 
         return;
     }
 
 
-    /*
-       Key đúng format.
-    */
-
-    message.style.color =
-        "#5cff9d";
-
-    message.innerText =
-        "Key hợp lệ!";
-
-
-    startAccount(key);
-
-
-    setTimeout(() => {
-
-        document
-        .getElementById("loginScreen")
-        .classList
-        .remove("active");
-
-
-        document
-        .getElementById("appScreen")
-        .classList
-        .add("active");
-
-    },500);
-}
-
-
-/* =========================
-   TIMER
-========================= */
-
-function startAccount(key){
-
-    const type =
-        key.startsWith("c28hpre")
-        ? "PREMIUM"
-        : "NORMAL";
-
-
-    document
-    .getElementById("accountType")
-    .innerText = type;
-
-
-    const parts =
-        key.split("-");
+    currentKey = key;
+    selectedKeyType = type;
 
 
     const duration =
-        parts[1];
+    key.split("-")[1];
 
 
-    let ms;
+    let durationText = "";
+    let milliseconds = 0;
 
 
     if(duration === "gio"){
+        durationText = "1 giờ";
+        milliseconds = 60 * 60 * 1000;
+    }
 
-        ms =
-            60 * 60 * 1000;
+    else if(duration === "ngay"){
+        durationText = "1 ngày";
+        milliseconds = 24 * 60 * 60 * 1000;
+    }
 
-    }else if(duration === "ngay"){
+    else if(duration === "tuan"){
+        durationText = "1 tuần";
+        milliseconds = 7 * 24 * 60 * 60 * 1000;
+    }
 
-        ms =
-            24 * 60 * 60 * 1000;
+    else if(duration === "thang"){
+        durationText = "1 tháng";
+        milliseconds = 30 * 24 * 60 * 60 * 1000;
+    }
 
-    }else if(duration === "tuan"){
-
-        ms =
-            7 * 24 * 60 * 60 * 1000;
-
-    }else if(duration === "thang"){
-
-        ms =
-            30 * 24 * 60 * 60 * 1000;
-
-    }else{
-
-        ms =
-            3650 * 24 * 60 * 60 * 1000;
-
+    else if(duration === "vv"){
+        durationText = "Vĩnh viễn";
+        milliseconds = null;
     }
 
 
-    expireTime =
-        Date.now() + ms;
+    if(milliseconds){
+        expireAt = Date.now() + milliseconds;
+    }
 
 
-    updateTimer();
+    document
+    .getElementById("keyPage")
+    .style.display = "none";
+
+    document
+    .getElementById("mainPage")
+    .style.display = "block";
+
+    document
+    .getElementById("gamePage")
+    .style.display = "block";
+
+    document
+    .getElementById("functionPage")
+    .style.display = "none";
 
 
-    setInterval(
-        updateTimer,
-        1000
-    );
-}
+    document
+    .getElementById("keyType")
+    .textContent =
+    type === "normal"
+    ? "NORMAL"
+    : "PREMIUM";
 
 
-function updateTimer(){
-
-    if(!expireTime)
-        return;
-
-
-    let remain =
-        expireTime - Date.now();
+    document
+    .getElementById("keyDuration")
+    .textContent = durationText;
 
 
-    if(remain <= 0){
+    if(expireAt){
 
         document
-        .getElementById("timer")
-        .innerText =
-        "ĐÃ HẾT HẠN";
-
-        return;
-    }
-
-
-    let total =
-        Math.floor(
-            remain / 1000
-        );
-
-
-    const days =
-        Math.floor(
-            total / 86400
-        );
-
-
-    total %= 86400;
-
-
-    const hours =
-        Math.floor(
-            total / 3600
-        );
-
-
-    total %= 3600;
-
-
-    const minutes =
-        Math.floor(
-            total / 60
-        );
-
-
-    const seconds =
-        total % 60;
-
-
-    document
-    .getElementById("timer")
-    .innerText =
-        `${days} ngày ` +
-        `${String(hours).padStart(2,"0")}:` +
-        `${String(minutes).padStart(2,"0")}:` +
-        `${String(seconds).padStart(2,"0")}`;
-
-
-    document
-    .getElementById("expireText")
-    .innerText =
-        new Date(expireTime)
+        .getElementById("expireTime")
+        .textContent =
+        new Date(expireAt)
         .toLocaleString("vi-VN");
-}
 
-
-/* =========================
-   CHỌN GAME
-========================= */
-
-function toggleGame(game){
-
-    const normal =
-        document
-        .getElementById("normalGame");
-
-
-    const max =
-        document
-        .getElementById("maxGame");
-
-
-    const normalBtn =
-        document
-        .getElementById("normalGameBtn");
-
-
-    const maxBtn =
-        document
-        .getElementById("maxGameBtn");
-
-
-    normal
-    .classList
-    .remove("active");
-
-
-    max
-    .classList
-    .remove("active");
-
-
-    normalBtn
-    .classList
-    .remove("active");
-
-
-    maxBtn
-    .classList
-    .remove("active");
-
-
-    if(game === "normalGame"){
-
-        normal
-        .classList
-        .add("active");
-
-
-        normalBtn
-        .classList
-        .add("active");
-
-    }
-
-
-    if(game === "maxGame"){
-
-        max
-        .classList
-        .add("active");
-
-
-        maxBtn
-        .classList
-        .add("active");
-
-    }
-}
-
-
-/* =========================
-   TÂM ẢO
-========================= */
-
-function toggleCrosshair(input){
-
-    const crosshair =
-        document
-        .getElementById("crosshair");
-
-
-    if(input.checked){
-
-        crosshair
-        .classList
-        .add("show");
+        startTimer();
 
     }else{
 
-        crosshair
-        .classList
-        .remove("show");
+        document
+        .getElementById("expireTime")
+        .textContent = "Vĩnh viễn";
 
     }
+
 }
 
 
-/* =========================
-   SENSITIVITY
-========================= */
+/* ================= TIMER ================= */
 
-function getSensitivity(prefix){
+function startTimer(){
+
+    clearInterval(timer);
+
+    timer = setInterval(() => {
+
+        if(!expireAt) return;
+
+        if(Date.now() >= expireAt){
+
+            clearInterval(timer);
+
+            alert("Key đã hết hạn!");
+
+            location.reload();
+
+        }
+
+    },1000);
+
+}
+
+
+/* ================= GAME ================= */
+
+function openGame(game){
+
+    document
+    .getElementById("gamePage")
+    .style.display = "none";
+
+    document
+    .getElementById("functionPage")
+    .style.display = "block";
+
+
+    document
+    .getElementById("selectedGame")
+    .textContent = game;
+
+
+    renderFunctions();
+
+}
+
+
+/* ================= FUNCTIONS ================= */
+
+function renderFunctions(){
+
+    const box =
+    document.getElementById("functions");
+
+    box.innerHTML = "";
+
+
+    let functions = [];
+
+
+    /*
+      NORMAL:
+      Không có Tâm Ảo
+      Không có HeadLock
+      Không có Bám đầu
+      Không có Nhạy Màn
+    */
+
+    if(selectedKeyType === "normal"){
+
+        functions = [
+            "Aimlock V1",
+            "Nhẹ Tâm",
+            "Fix Rung",
+            "Fix Lố"
+        ];
+
+    }
+
+
+    /*
+      PREMIUM:
+      Có đầy đủ chức năng premium
+    */
+
+    else{
+
+        functions = [
+            "Tâm Ảo",
+            "Aimlock VIP",
+            "HeadLock",
+            "Nhẹ Tâm",
+            "Bám đầu",
+            "Fix Rung",
+            "Fix Lố",
+            "Nhạy Màn",
+            "Buff FPS"
+        ];
+
+    }
+
+
+    document
+    .getElementById("functionType")
+    .textContent =
+    selectedKeyType === "normal"
+    ? "CHỨC NĂNG NORMAL"
+    : "CHỨC NĂNG PREMIUM";
+
+
+    functions.forEach(name => {
+
+        const div =
+        document.createElement("div");
+
+        div.className = "function-box";
+
+        div.innerHTML = `
+            <span class="brand">C28H</span>
+
+            <div class="function-name">
+                ${name}
+            </div>
+
+            <div
+                class="switch"
+                onclick="toggleFunction(this,'${name}')">
+            </div>
+        `;
+
+        box.appendChild(div);
+
+    });
+
+}
+
+
+/* ================= SWITCH ================= */
+
+function toggleFunction(el,name){
+
+    el.classList.toggle("on");
+
+    const enabled =
+    el.classList.contains("on");
+
+
+    /*
+      Tâm Ảo chỉ là giao diện crosshair
+      trên trang web, không can thiệp game.
+    */
+
+    if(name === "Tâm Ảo"){
+
+        document
+        .getElementById("crosshair")
+        .style.display =
+        enabled ? "block" : "none";
+
+    }
+
+}
+
+
+/* ================= SENSITIVITY ================= */
+
+function getSensitivity(){
 
     const device =
-        document
-        .getElementById(
-            prefix + "Device"
-        )
-        .value
-        .trim();
+    document
+    .getElementById("device")
+    .value
+    .trim();
 
 
     if(!device){
 
-        alert(
-            "Vui lòng nhập tên thiết bị."
-        );
+        alert("Hãy nhập tên thiết bị!");
 
         return;
     }
 
 
     /*
-       Demo dữ liệu giao diện.
-       Không tác động vào game.
+      Demo giao diện.
+      Không can thiệp hoặc thay đổi game.
     */
 
-    document
-    .getElementById(prefix+"Look")
-    .value = 190;
+    document.getElementById("s1").textContent = "180";
+    document.getElementById("s2").textContent = "175";
+    document.getElementById("s3").textContent = "170";
+    document.getElementById("s4").textContent = "165";
+    document.getElementById("s5").textContent = "160";
+    document.getElementById("s6").textContent = "190";
+    document.getElementById("fire").textContent = "55";
 
 
     document
-    .getElementById(prefix+"Red")
-    .value = 185;
+    .getElementById("sensResult")
+    .style.display = "block";
 
-
-    document
-    .getElementById(prefix+"2x")
-    .value = 180;
-
-
-    document
-    .getElementById(prefix+"4x")
-    .value = 175;
-
-
-    document
-    .getElementById(prefix+"Sniper")
-    .value = 165;
-
-
-    document
-    .getElementById(prefix+"Free")
-    .value = 190;
-
-
-    document
-    .getElementById(prefix+"Fire")
-    .value = 55;
 }
 
 
-function activateConfig(){
+/* ================= BACK ================= */
 
-    alert(
-        "C28H: Đã bật cấu hình giao diện mô phỏng."
-    );
+function backToGame(){
+
+    document
+    .getElementById("functionPage")
+    .style.display = "none";
+
+    document
+    .getElementById("gamePage")
+    .style.display = "block";
+
+    document
+    .getElementById("crosshair")
+    .style.display = "none";
+
 }
-
-</script>
-
-
-
-<script>
-
-/*
-   Tạo phần độ nhạy cho cả 2 game
-*/
-
-function createSensitivity(prefix){
-
-    return `
-
-        <div class="device-box">
-
-            <div class="section-title">
-                ĐỘ NHẠY C28H
-            </div>
-
-
-            <div class="sens-item full">
-
-                <span class="c28h-mini">
-                    C28H
-                </span>
-
-                <label>
-                    Thiết bị
-                </label>
-
-                <input
-                id="${prefix}Device"
-                class="device-input"
-                type="text"
-                placeholder="Ví dụ: iPhone 13">
-
-            </div>
-
-
-            <br>
-
-
-            <button
-            class="btn"
-            onclick="getSensitivity('${prefix}')">
-
-                LẤY ĐỘ NHẠY
-
-            </button>
-
-
-            <div class="sensitivity-grid">
-
-
-                <div class="sens-item">
-
-                    <span class="c28h-mini">
-                        C28H
-                    </span>
-
-                    <label>
-                        Nhìn xung quanh
-                    </label>
-
-                    <input
-                    id="${prefix}Look"
-                    type="number">
-
-                </div>
-
-
-                <div class="sens-item">
-
-                    <span class="c28h-mini">
-                        C28H
-                    </span>
-
-                    <label>
-                        Ống ngắm hồng tâm
-                    </label>
-
-                    <input
-                    id="${prefix}Red"
-                    type="number">
-
-                </div>
-
-
-                <div class="sens-item">
-
-                    <span class="c28h-mini">
-                        C28H
-                    </span>
-
-                    <label>
-                        Ống ngắm 2X
-                    </label>
-
-                    <input
-                    id="${prefix}2x"
-                    type="number">
-
-                </div>
-
-
-                <div class="sens-item">
-
-                    <span class="c28h-mini">
-                        C28H
-                    </span>
-
-                    <label>
-                        Ống ngắm 4X
-                    </label>
-
-                    <input
-                    id="${prefix}4x"
-                    type="number">
-
-                </div>
-
-
-                <div class="sens-item">
-
-                    <span class="c28h-mini">
-                        C28H
-                    </span>
-
-                    <label>
-                        Ống ngắm súng ngắm
-                    </label>
-
-                    <input
-                    id="${prefix}Sniper"
-                    type="number">
-
-                </div>
-
-
-                <div class="sens-item">
-
-                    <span class="c28h-mini">
-                        C28H
-                    </span>
-
-                    <label>
-                        Nút camera tự do
-                    </label>
-
-                    <input
-                    id="${prefix}Free"
-                    type="number">
-
-                </div>
-
-
-                <div class="sens-item full">
-
-                    <span class="c28h-mini">
-                        C28H
-                    </span>
-
-                    <label>
-                        Nút bắn chuẩn
-                    </label>
-
-                    <input
-                    id="${prefix}Fire"
-                    type="number">
-
-                </div>
-
-            </div>
-
-
-            <br>
-
-
-            <button
-            class="btn"
-            onclick="activateConfig()">
-
-                KÍCH HOẠT CẤU HÌNH
-
-            </button>
-
-        </div>
-
-    `;
-}
-
-
-/*
-   Chèn vào game sau khi trang tải
-*/
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function(){
-
-        document
-        .getElementById("normalGame")
-        .querySelector(".dpi-box")
-        .insertAdjacentHTML(
-            "afterend",
-            createSensitivity("normal")
-        );
-
-
-        document
-        .getElementById("maxGame")
-        .querySelector(".dpi-box")
-        .insertAdjacentHTML(
-            "afterend",
-            createSensitivity("max")
-        );
-
-    }
-);
 
 </script>
 
