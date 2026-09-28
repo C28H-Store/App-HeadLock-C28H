@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HeadLock C28H</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#05080d;
+    color:white;
+    min-height:100vh;
+}
+
+.container{
+    width:100%;
+    max-width:520px;
+    margin:auto;
+    padding:20px 15px 50px;
+}
+
+/* LOGO */
+
+.logo{
+    text-align:center;
+    padding:25px 0;
+}
+
+.logo h1{
+    font-size:30px;
+    letter-spacing:2px;
+}
+
+.logo p{
+    margin-top:6px;
+    font-size:13px;
+    letter-spacing:5px;
+    color:#50aaff;
+}
+
+/* CARD */
+
+.card{
+    background:#0b1018;
+    border:1px solid #26384d;
+    border-radius:18px;
+    padding:18px;
+    margin-bottom:15px;
+    box-shadow:0 0 25px rgba(0,0,0,.35);
+}
+
+/* LOGIN */
+
+.login-title{
+    font-size:19px;
+    margin-bottom:15px;
+}
+
+.tabs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+}
+
+.tab{
+    border:1px solid #30445c;
+    background:#0c141e;
+    color:#9baabd;
+    padding:13px;
+    border-radius:11px;
+    font-weight:bold;
+}
+
+.tab.active{
+    color:white;
+    border-color:#2196ff;
+    background:#102238;
+}
+
+input{
+    width:100%;
+    margin-top:10px;
+    padding:13px;
+    border-radius:10px;
+    border:1px solid #30445c;
+    outline:none;
+    background:#070b11;
+    color:white;
+}
+
+button{
+    cursor:pointer;
+}
+
+.main-btn{
+    width:100%;
+    margin-top:10px;
+    padding:13px;
+    border:none;
+    border-radius:10px;
+    background:#168cff;
+    color:white;
+    font-weight:bold;
+}
+
+.demo-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:8px;
+}
+
+.demo-btn{
+    padding:10px;
+    border-radius:9px;
+    border:1px solid #30445c;
+    background:#101823;
+    color:#fff;
+}
+
+.error{
+    color:#ff5968;
+    margin-top:10px;
+    font-size:13px;
+}
+
+.success{
+    color:#35dc91;
+    margin-top:10px;
+    font-size:13px;
+}
+
+/* APP */
+
+.hidden{
+    display:none !important;
+}
+
+.timer{
+    text-align:center;
+    border:1px dashed #315678;
+    border-radius:13px;
+    padding:15px;
+}
+
+.timer-number{
+    font-size:25px;
+    color:#56b4ff;
+    font-weight:bold;
+}
+
+.expire{
+    margin-top:5px;
+    font-size:12px;
+    color:#8290a4;
+}
+
+/* GAMES */
+
+.game{
+    background:#080d14;
+    border:1px solid #2a394d;
+    border-radius:16px;
+    padding:15px;
+    margin-bottom:15px;
+}
+
+.game-title{
+    font-size:17px;
+    margin-bottom:12px;
+}
+
+/* FEATURES */
+
+.features{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+}
+
+.feature{
+    position:relative;
+    min-height:70px;
+    padding:12px;
+    background:#0b1119;
+    border:1px solid #2b3c50;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+.feature:after{
+    content:"C28H";
+    position:absolute;
+    right:6px;
+    bottom:4px;
+    font-size:8px;
+    color:#52657c;
+}
+
+.feature-name{
+    font-size:13px;
+}
+
+.switch{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:10px;
+}
+
+.switch input{
+    width:auto;
+    margin:0;
+    accent-color:#2196ff;
+}
+
+/* CROSSHAIR */
+
+.crosshair{
+    position:fixed;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    color:white;
+    font-size:28px;
+    z-index:9999;
+    text-shadow:
+        0 0 5px #2196ff,
+        0 0 15px #2196ff;
+    pointer-events:none;
+}
+
+.crosshair.off{
+    display:none;
+}
+
+/* SENS */
+
+.sens-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:10px;
+}
+
+.sens-box{
+    border:1px solid #2a3b50;
+    border-radius:10px;
+    padding:10px;
+    background:#080d13;
+    font-size:12px;
+}
+
+.sens-box strong{
+    display:block;
+    margin-top:5px;
+    font-size:18px;
+}
+
+.small-note{
+    margin-top:8px;
+    color:#8190a4;
+    font-size:12px;
+}
+
+.green{
+    background:#12b879;
+}
+</style>
+</head>
+
+<body>
+
+<div id="crosshair" class="crosshair off">＋</div>
+
+<div class="container">
+
+    <div class="logo">
+        <h1>HeadLock C28H</h1>
+        <p>C28H AIM</p>
+    </div>
+
+
+    <!-- LOGIN -->
+
+    <div id="loginPage" class="card">
+
+        <div class="login-title">
+            🔐 Nhập Key để tiếp tục
+        </div>
+
+        <div class="tabs">
+
+            <button
+                id="normalTab"
+                class="tab active"
+                type="button"
+                onclick="chooseType('normal')">
+                Key Normal
+            </button>
+
+            <button
+                id="premiumTab"
+                class="tab"
+                type="button"
+                onclick="chooseType('premium')">
+                Key Premium
+            </button>
+
+        </div>
+
+        <input
+            id="keyInput"
+            type="text"
+            autocomplete="off"
+            placeholder="Nhập Key C28H...">
+
+        <button
+            class="main-btn"
+            type="button"
+            onclick="checkKey()">
+            XÁC NHẬN KEY
+        </button>
+
+        <div class="demo-buttons">
+
+            <button
+                class="demo-btn"
+                type="button"
+                onclick="demoNormal()">
+                Demo Normal
+            </button>
+
+            <button
+                class="demo-btn"
+                type="button"
+                onclick="demoPremium()">
+                Demo Premium
+            </button>
+
+        </div>
+
+        <div id="message"></div>
+
+    </div>
+
+
+    <!-- APP -->
+
+    <div id="appPage" class="hidden">
+
+        <div class="card">
+
+            <h2 id="accountType">
+                C28H Normal
+            </h2>
+
+            <div class="timer">
+
+                <div
+                    id="countdown"
+                    class="timer-number">
+                    00:00:00
+                </div>
+
+                <div
+                    id="expireText"
+                    class="expire">
+                    Hết hạn vào ngày: --
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TÂM ẢO -->
+
+        <div class="card">
+
+            <h2>🎯 Tâm Ảo</h2>
+
+            <div class="feature switch">
+
+                <span class="feature-name">
+                    Bật / Tắt Tâm Ảo
+                </span>
+
+                <input
+                    id="crossSwitch"
+                    type="checkbox"
+                    onchange="toggleCrosshair()">
+
+            </div>
+
+            <div class="small-note">
+                Tâm ảo này chỉ hiển thị trên giao diện WebClip,
+                không can thiệp vào Free Fire.
+            </div>
+
+        </div>
+
+
+        <!-- FREE FIRE -->
+
+        <div class="game">
+
+            <div class="game-title">
+                Free Fire Thường
+            </div>
+
+            <div
+                id="normalFeatures"
+                class="features">
+            </div>
+
+        </div>
+
+
+        <!-- FREE FIRE MAX -->
+
+        <div class="game">
+
+            <div class="game-title">
+                Free Fire MAX
+            </div>
+
+            <div
+                id="maxFeatures"
+                class="features">
+            </div>
+
+        </div>
+
+
+        <!-- SENS -->
+
+        <div class="card">
+
+            <h2>📱 Lấy Độ Nhạy</h2>
+
+            <input
+                id="deviceInput"
+                type="text"
+                placeholder="Nhập tên dòng máy">
+
+            <input
+                id="dpiInput"
+                type="number"
+                min="1"
+                max="120"
+                placeholder="DPI: 1 - 120">
+
+            <button
+                class="main-btn"
+                type="button"
+                onclick="getSensitivity()">
+                LẤY ĐỘ NHẠY
+            </button>
+
+            <div id="sensitivityResult"></div>
+
+        </div>
+
+
+        <div class="card">
+
+            <button
+                class="main-btn green"
+                type="button"
+                onclick="activate()">
+                KÍCH HOẠT
+            </button>
+
+            <div id="activateMessage"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   BIẾN
+========================= */
+
+var selectedType = "normal";
+var expirationTime = 0;
+
+
+/* =========================
+   CHỌN NORMAL / PREMIUM
+========================= */
+
+function chooseType(type){
+
+    selectedType = type;
+
+    document
+        .getElementById("normalTab")
+        .classList.remove("active");
+
+    document
+        .getElementById("premiumTab")
+        .classList.remove("active");
+
+    if(type === "normal"){
+
+        document
+            .getElementById("normalTab")
+            .classList.add("active");
+
+    }else{
+
+        document
+            .getElementById("premiumTab")
+            .classList.add("active");
+
+    }
+
+    document.getElementById("message").innerHTML = "";
+
+}
+
+
+/* =========================
+   DEMO KEY
+========================= */
+
+function demoNormal(){
+
+    chooseType("normal");
+
+    document.getElementById("keyInput").value =
+        "c28hios-gio-ABCDE";
+
+}
+
+
+function demoPremium(){
+
+    chooseType("premium");
+
+    document.getElementById("keyInput").value =
+        "c28hpre-gio-ABCDE";
+
+}
+
+
+/* =========================
+   CHECK KEY
+========================= */
+
+function checkKey(){
+
+    var key =
+        document
+        .getElementById("keyInput")
+        .value
+        .trim();
+
+    if(key === ""){
+
+        showError("Vui lòng nhập Key.");
+
+        return;
+
+    }
+
+
+    var normalPattern =
+        /^c28hios-(gio|ngay|tuan|thang|vv)-[a-zA-Z0-9]{5}$/;
+
+    var premiumPattern =
+        /^c28hpre-(gio|ngay|tuan|thang|vv)-[a-zA-Z0-9]{5}$/;
+
+
+    var valid = false;
+
+
+    if(selectedType === "normal"){
+
+        valid = normalPattern.test(key);
+
+    }else{
+
+        valid = premiumPattern.test(key);
+
+    }
+
+
+    if(!valid){
+
+        showError(
+            "❌ Key không hợp lệ hoặc sai loại Key."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Xác định thời hạn
+    */
+
+    var parts = key.split("-");
+
+    var duration = parts[1];
+
+    var minutes = 60;
+
+
+    if(duration === "gio"){
+        minutes = 60;
+    }
+
+    if(duration === "ngay"){
+        minutes = 60 * 24;
+    }
+
+    if(duration === "tuan"){
+        minutes = 60 * 24 * 7;
+    }
+
+    if(duration === "thang"){
+        minutes = 60 * 24 * 30;
+    }
+
+    if(duration === "vv"){
+        minutes = 60 * 24 * 3650;
+    }
+
+
+    expirationTime =
+        Date.now() + minutes * 60000;
+
+
+    /*
+       Lưu key
+    */
+
+    localStorage.setItem(
+        "C28H_ACTIVE_KEY",
+        key
+    );
+
+    localStorage.setItem(
+        "C28H_EXPIRY",
+        expirationTime
+    );
+
+    localStorage.setItem(
+        "C28H_TYPE",
+        selectedType
+    );
+
+
+    openApp();
+
+}
+
+
+/* =========================
+   MỞ APP
+========================= */
+
+function openApp(){
+
+    document
+        .getElementById("loginPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("appPage")
+        .classList.remove("hidden");
+
+
+    if(selectedType === "premium"){
+
+        document
+            .getElementById("accountType")
+            .innerText = "C28H Premium";
+
+    }else{
+
+        document
+            .getElementById("accountType")
+            .innerText = "C28H Normal";
+
+    }
+
+
+    createFeatures();
+
+    updateTimer();
+
+}
+
+
+/* =========================
+   CHỨC NĂNG
+========================= */
+
+function createFeatures(){
+
+    var normal =
+        [
+            "Aimlock V1",
+            "Fix Rung",
+            "Fix Lố",
+            "Bám đầu",
+            "Nhạy Màn"
+        ];
+
+    var premium =
+        [
+            "Aimlock Vip",
+            "HeadLock Nhẹ Tâm",
+            "Bám đầu",
+            "Fix Rung",
+            "Fix Lố",
+            "Nhạy Màn",
+            "Buff FPS"
+        ];
+
+
+    var list =
+        selectedType === "premium"
+        ? premium
+        : normal;
+
+
+    var html = "";
+
+
+    for(var i=0;i<list.length;i++){
+
+        html +=
+        '<div class="feature">' +
+
+            '<div class="feature-name">' +
+                list[i] +
+            '</div>' +
+
+            '<div class="switch">' +
+
+                '<span></span>' +
+
+                '<input type="checkbox">' +
+
+            '</div>' +
+
+        '</div>';
+
+    }
+
+
+    document
+        .getElementById("normalFeatures")
+        .innerHTML = html;
+
+
+    document
+        .getElementById("maxFeatures")
+        .innerHTML = html;
+
+}
+
+
+/* =========================
+   ĐẾM THỜI GIAN
+========================= */
+
+function updateTimer(){
+
+    var now = Date.now();
+
+    var remain =
+        expirationTime - now;
+
+
+    if(remain <= 0){
+
+        document
+            .getElementById("countdown")
+            .innerText = "00:00:00";
+
+        document
+            .getElementById("expireText")
+            .innerText = "Key đã hết hạn.";
+
+        return;
+
+    }
+
+
+    var totalSeconds =
+        Math.floor(remain / 1000);
+
+    var hours =
+        Math.floor(totalSeconds / 3600);
+
+    var minutes =
+        Math.floor(
+            (totalSeconds % 3600) / 60
+        );
+
+    var seconds =
+        totalSeconds % 60;
+
+
+    document
+        .getElementById("countdown")
+        .innerText =
+            format(hours) + ":" +
+            format(minutes) + ":" +
+            format(seconds);
+
+
+    document
+        .getElementById("expireText")
+        .innerText =
+            "Hết hạn vào ngày: " +
+            new Date(expirationTime)
+            .toLocaleString("vi-VN");
+
+
+    setTimeout(
+        updateTimer,
+        1000
+    );
+
+}
+
+
+function format(number){
+
+    return number < 10
+        ? "0" + number
+        : number;
+
+}
+
+
+/* =========================
+   TÂM ẢO
+========================= */
+
+function toggleCrosshair(){
+
+    var enabled =
+        document
+        .getElementById("crossSwitch")
+        .checked;
+
+    var cross =
+        document
+        .getElementById("crosshair");
+
+
+    if(enabled){
+
+        cross.classList.remove("off");
+
+    }else{
+
+        cross.classList.add("off");
+
+    }
+
+}
+
+
+/* =========================
+   ĐỘ NHẠY
+========================= */
+
+function getSensitivity(){
+
+    var device =
+        document
+        .getElementById("deviceInput")
+        .value
+        .trim();
+
+    var dpi =
+        Number(
+            document
+            .getElementById("dpiInput")
+            .value
+        );
+
+
+    if(device === ""){
+
+        document
+        .getElementById("sensitivityResult")
+        .innerHTML =
+        '<div class="error">Vui lòng nhập tên dòng máy.</div>';
+
+        return;
+
+    }
+
+
+    if(dpi < 1 || dpi > 120){
+
+        document
+        .getElementById("sensitivityResult")
+        .innerHTML =
+        '<div class="error">DPI phải từ 1 đến 120.</div>';
+
+        return;
+
+    }
+
+
+    var names =
+        [
+            "Nhìn xung quanh",
+            "Ống ngắm hồng tâm",
+            "Ống ngắm 2X",
+            "Ống ngắm 4X",
+            "Ống ngắm súng ngắm",
+            "Nút camera tự do"
+        ];
+
+
+    var html =
+        '<div class="sens-grid">';
+
+
+    for(var i=0;i<names.length;i++){
+
+        var value =
+            Math.min(
+                200,
+                100 + dpi - i * 5
+            );
+
+
+        html +=
+        '<div class="sens-box">' +
+            names[i] +
+            '<strong>' +
+            value +
+            '</strong>' +
+        '</div>';
+
+    }
+
+
+    html += '</div>';
+
+
+    html +=
+    '<button class="main-btn" type="button" onclick="alert(\'Nút bắn chuẩn - bộ mẫu cho '+device+'\')">' +
+        'NÚT BẮN CHUẨN' +
+    '</button>';
+
+
+    document
+        .getElementById("sensitivityResult")
+        .innerHTML = html;
+
+}
+
+
+/* =========================
+   KÍCH HOẠT
+========================= */
+
+function activate(){
+
+    document
+        .getElementById("activateMessage")
+        .innerHTML =
+        '<div class="success">✓ Kích hoạt thành công.</div>';
+
+}
+
+
+/* =========================
+   THÔNG BÁO
+========================= */
+
+function showError(text){
+
+    document
+        .getElementById("message")
+        .innerHTML =
+        '<div class="error">' +
+        text +
+        '</div>';
+
+}
+
+</script>
+
+</body>
+</html>
